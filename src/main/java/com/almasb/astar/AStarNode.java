@@ -42,10 +42,18 @@ public class AStarNode {
         this.state = state;
     }
 
+    /**
+     * Set user specific data.
+     *
+     * @param userData data
+     */
     public final void setUserData(Object userData) {
         this.userData = userData;
     }
 
+    /**
+     * @return user specific data
+     */
     public final Object getUserData() {
         return userData;
     }

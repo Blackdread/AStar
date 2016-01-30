@@ -65,11 +65,11 @@ public class Maze {
      * Returns shortest path between two cells in the maze.
      * If no path found, empty list is returned
      *
-     * @param startX
-     * @param startY
-     * @param targetX
-     * @param targetY
-     * @return
+     * @param startX x of start maze cell
+     * @param startY y of start maze cell
+     * @param targetX x of target maze cell
+     * @param targetY y of target maze cell
+     * @return shortest path
      */
     public List<MazeCell> getPath(int startX, int startY, int targetX, int targetY) {
         AStarGrid grid = new AStarGrid(width, height);

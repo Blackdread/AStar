@@ -1,15 +1,13 @@
 package com.almasb.astar.maze;
 
-
 import com.almasb.astar.AStarLogic;
 import com.almasb.astar.AStarNode;
-import com.almasb.astar.NodeState;
 
 import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Solves a maze Maze using A*.
+ * Solves a Maze using A*.
  *
  * @author Almas Baimagambetov (AlmasB) (almaslvl@gmail.com)
  */

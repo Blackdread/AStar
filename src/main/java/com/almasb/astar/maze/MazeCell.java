@@ -14,26 +14,44 @@ public class MazeCell {
         this.y = y;
     }
 
+    /**
+     * @return x coordinate of this cell in the grid
+     */
     public int getX() {
         return x;
     }
 
+    /**
+     * @return y coordinate of this cell in the grid
+     */
     public int getY() {
         return y;
     }
 
-    void setLeftWall(boolean leftWall) {
+    /**
+     * @param leftWall left wall for this cell
+     */
+    public void setLeftWall(boolean leftWall) {
         this.leftWall = leftWall;
     }
 
-    void setTopWall(boolean topWall) {
+    /**
+     * @param topWall top wall for this cell
+     */
+    public void setTopWall(boolean topWall) {
         this.topWall = topWall;
     }
 
+    /**
+     * @return if left wall is present
+     */
     public boolean hasLeftWall() {
         return leftWall;
     }
 
+    /**
+     * @return if top wall is present
+     */
     public boolean hasTopWall() {
         return topWall;
     }
