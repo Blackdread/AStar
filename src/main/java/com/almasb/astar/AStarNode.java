@@ -124,4 +124,9 @@ public class AStarNode {
     public final int getFCost() {
         return gCost + hCost;
     }
+
+    @Override
+    public String toString() {
+        return "A* Node[x=" + x + ",y=" + y + "," + state + "]";
+    }
 }
