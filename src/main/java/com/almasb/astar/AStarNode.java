@@ -27,6 +27,8 @@ public class AStarNode {
      */
     private int gCost, hCost;
 
+    private Object userData = null;
+
     /**
      * Constructs A* node with x, y values and state.
      *
@@ -38,6 +40,14 @@ public class AStarNode {
         this.x = x;
         this.y = y;
         this.state = state;
+    }
+
+    public final void setUserData(Object userData) {
+        this.userData = userData;
+    }
+
+    public final Object getUserData() {
+        return userData;
     }
 
     /**

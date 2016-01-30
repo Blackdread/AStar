@@ -1,10 +1,17 @@
-package com.almasb.astar;
+package com.almasb.astar.maze;
+
+import com.almasb.astar.AStarGrid;
 
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * A 2d maze.
+ *
+ * Slightly modified and adapted version from
+ * <a href="http://rosettacode.org/wiki/Maze_generation#Java">Rosetta Code</a>.
  *
  * @author Almas Baimagambetov (AlmasB) (almaslvl@gmail.com)
  */
@@ -54,6 +61,30 @@ public class Maze {
         }
     }
 
+    /**
+     * Returns shortest path between two cells in the maze.
+     * If no path found, empty list is returned
+     *
+     * @param startX
+     * @param startY
+     * @param targetX
+     * @param targetY
+     * @return
+     */
+    public List<MazeCell> getPath(int startX, int startY, int targetX, int targetY) {
+        AStarGrid grid = new AStarGrid(width, height);
+        for (int y = 0; y < height; y++) {
+            for (int x = 0; x < width; x++) {
+                grid.getNode(x, y).setUserData(getMazeCell(x, y));
+            }
+        }
+
+        return new MazeSolver().getPath(grid.getGrid(), grid.getNode(startX, startY), grid.getNode(targetX, targetY))
+                .stream()
+                .map(node -> (MazeCell) node.getUserData())
+                .collect(Collectors.toList());
+    }
+
     private void generateMaze(int cx, int cy) {
         DIR[] dirs = DIR.values();
         Collections.shuffle(Arrays.asList(dirs));
@@ -79,7 +110,6 @@ public class Maze {
         private final int dy;
         private DIR opposite;
 
-        // use the static initializer to resolve forward references
         static {
             N.opposite = S;
             S.opposite = N;

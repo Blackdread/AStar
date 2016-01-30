@@ -113,4 +113,8 @@ public class AStarGrid {
     public final AStarNode getNode(int x, int y) {
         return grid[x][y];
     }
+
+    public AStarNode[][] getGrid() {
+        return grid;
+    }
 }

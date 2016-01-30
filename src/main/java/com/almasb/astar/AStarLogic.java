@@ -9,7 +9,7 @@ import java.util.List;
  *
  * @author Almas Baimagambetov (AlmasB) (almaslvl@gmail.com)
  */
-final class AStarLogic {
+public class AStarLogic {
 
     /**
      * Since the equality check is based on references,
@@ -21,7 +21,7 @@ final class AStarLogic {
      * @param busyNodes busy "unwalkable" nodes
      * @return          path as list of nodes from start to target or empty list if no path found
      */
-    public List<AStarNode> getPath(AStarNode[][] grid, AStarNode start, AStarNode target, AStarNode... busyNodes) {
+    public final List<AStarNode> getPath(AStarNode[][] grid, AStarNode start, AStarNode target, AStarNode... busyNodes) {
         if (target.getState() == NodeState.NOT_WALKABLE)
             return Collections.emptyList();
 
@@ -92,54 +92,13 @@ final class AStarLogic {
         return path;
     }
 
-    private AStarNode[] getNeighbors(AStarNode n, AStarNode[][] grid, AStarNode... busyNodes) {
-        int x = n.getX();
-        int y = n.getY();
-        int x1 = x - 1;
-        int x2 = x + 1;
-        int y1 = y - 1;
-        int y2 = y + 1;
-
-        boolean b1 = x1 >= 0 && grid[x1][y].getState() == NodeState.WALKABLE && !contains(x1, y, busyNodes);
-        boolean b2 = x2 < grid.length && grid[x2][y].getState() == NodeState.WALKABLE && !contains(x2, y, busyNodes);
-        boolean b3 = y1 >= 0 && grid[x][y1].getState() == NodeState.WALKABLE && !contains(x, y1, busyNodes);
-        boolean b4 = y2 < grid[0].length && grid[x][y2].getState() == NodeState.WALKABLE && !contains(x, y2, busyNodes);
-
-        int count = 0;
-        if (b1)
-            count++;
-        if (b2)
-            count++;
-        if (b3)
-            count++;
-        if (b4)
-            count++;
-
-        AStarNode[] res = new AStarNode[count];
-        int i = 0;
-
-        if (b1)
-            res[i++] = grid[x1][y];
-
-        if (b2)
-            res[i++] = grid[x2][y];
-
-        if (b3)
-            res[i++] = grid[x][y1];
-
-        if (b4)
-            res[i++] = grid[x][y2];
-
-        return res;
-    }
-
     /**
      * @param node the A* node
      * @param grid the A* grid
      * @param busyNodes nodes which are busy, i.e. walkable but have a temporary obstacle
      * @return neighbors of the node
      */
-    private List<AStarNode> getValidNeighbors(AStarNode node, AStarNode[][] grid, AStarNode... busyNodes) {
+    protected List<AStarNode> getValidNeighbors(AStarNode node, AStarNode[][] grid, AStarNode... busyNodes) {
         int x = node.getX(), y = node.getY();
         int[] points = {
             x - 1, y,

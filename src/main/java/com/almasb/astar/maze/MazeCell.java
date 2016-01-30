@@ -1,4 +1,4 @@
-package com.almasb.astar;
+package com.almasb.astar.maze;
 
 /**
  * Represents a single cell in a maze.
