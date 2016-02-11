@@ -114,6 +114,9 @@ public class AStarGrid {
         return grid[x][y];
     }
 
+    /**
+     * @return underlying grid of nodes
+     */
     public AStarNode[][] getGrid() {
         return grid;
     }
