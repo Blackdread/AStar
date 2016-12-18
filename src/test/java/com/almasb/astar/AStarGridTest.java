@@ -4,8 +4,13 @@ import org.junit.Before;
 import org.junit.Test;
 
 import java.util.List;
+import java.util.Optional;
 
 import static org.junit.Assert.*;
+
+import static org.hamcrest.CoreMatchers.anyOf;
+import static org.hamcrest.CoreMatchers.is;
+import static org.junit.Assert.assertThat;
 
 public class AStarGridTest {
 
@@ -15,6 +20,27 @@ public class AStarGridTest {
     @Before
     public void setUp() {
         grid = new AStarGrid(GRID_SIZE, GRID_SIZE);
+    }
+
+    @Test
+    public void testValidity() {
+        int count = 0;
+
+        try {
+            new AStarGrid(-1, 5);
+        } catch (IllegalArgumentException e) {
+            count++;
+        }
+
+        assertThat(count, is(1));
+
+        try {
+            new AStarGrid(5, -1);
+        } catch (IllegalArgumentException e) {
+            count++;
+        }
+
+        assertThat(count, is(2));
     }
 
     @Test
@@ -36,6 +62,16 @@ public class AStarGridTest {
                 assertEquals(NodeState.WALKABLE, grid.getNodeState(j, i));
             }
         }
+    }
+
+    @Test
+    public void testRandomNode() {
+        Optional<AStarNode> maybe = grid.getRandomNode(node -> node.getX() < 3 && node.getY() > 15);
+        assertThat(maybe.isPresent(), is(true));
+
+        AStarNode node = maybe.get();
+        assertThat(node.getX(), anyOf(is(1), is(2)));
+        assertThat(node.getY(), anyOf(is(16), is(17), is(18), is(19)));
     }
 
     @Test
